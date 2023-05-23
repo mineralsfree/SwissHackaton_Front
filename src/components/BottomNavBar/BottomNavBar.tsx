@@ -1,4 +1,4 @@
-import {useLocation, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';

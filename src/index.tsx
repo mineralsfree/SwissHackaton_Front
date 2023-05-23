@@ -2,37 +2,38 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import Root from "./routes/root";
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 import {ScanScreen} from "./components/ScanScreen/ScanScreen";
-import {UserDash} from "./components/UserDash/UserDash";
-import {UserStats} from "./components/Stats/UserStats";
+import LoginPage from "./components/Login/Login";
+import RegisterPage from "./components/Login/Register";
+import {ProtectedLayout} from "./contexts/ProtectedLayout";
+import {HomeLayout} from "./contexts/HomeLayout";
+import { AuthProvider } from './contexts/AuthContext';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Root/>,
-        children: [
-            {
-                path: "trash",
-                element: <ScanScreen/>,
-            },
-            {
-                path: "user",
-                element: <UserDash/>,
-            },
-            {path: 'stats', element: <UserStats/>}
-        ]
-    },
-]);
+const router = createBrowserRouter(createRoutesFromElements(
+    <>
+        <Route element={<HomeLayout/>}>
+            <Route path="/" element={<LoginPage/>}/>
+            <Route path="/login" element={<LoginPage/>}/>
+            <Route path="/register" element={<RegisterPage/>}/>
+            <Route path="/dashboard" element={<ProtectedLayout/>}>
+                <Route path="stats" element={<ScanScreen/>}/>
+                <Route path="trash" element={<ScanScreen/>}/>
+                <Route path="user" element={<ScanScreen/>}/>
+            </Route>
+        </Route>
+    </>
+));
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router}/>
+        {/*<AuthProvider>*/}
+            <RouterProvider router={router}/>
+        {/*</AuthProvider>*/}
     </React.StrictMode>
 );
 

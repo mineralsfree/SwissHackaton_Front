@@ -3,14 +3,15 @@ import Html5QrcodePlugin from "../Html5QrcodeScannerPlugin";
 import {Html5QrcodeScanType, Html5QrcodeSupportedFormats} from "html5-qrcode";
 import AlertDialogSlide from "../AlertDialog/AlertDialog";
 import {Product} from "../../types/types";
+import {trashApi} from "../../api/trashApi";
 
 
 const mockedData: Product[] = [{
     id: 1,
-    EAN: '5902078000201',
+    ean: '5902078000201',
     img: 'https://dlabiura24.pl/woda-cisowianka-niegazowana-15l-6szt,gdbfb,bgaa,bgaa.jpg',
     name: 'Woda Cisowianka',
-    trashBinId: 2
+    type_of_trash: 2
 }]
 export const ScanScreen = () => {
     const [product, setProduct] = useState<null | Product>(null)
@@ -23,12 +24,20 @@ export const ScanScreen = () => {
         setOpen(false);
         setProduct(null);
     };
-    const onNewScanResult = (scan: string) => {
-        const product = mockedData.find((el) => el.EAN === scan);
-        if (product) {
-            setProduct(product);
-            setOpen(true);
+    const onNewScanResult = async (scan: string) => {
+        try {
+            const product = await trashApi.checkEAN(scan)
+            if (product) {
+                setProduct(product);
+                setOpen(true);
+            }
+        } catch (e){
+            setProduct(null);
         }
+
+
+        // const product = mockedData.find((el) => el.EAN === scan);
+
     }
     return (
         <div className="App">

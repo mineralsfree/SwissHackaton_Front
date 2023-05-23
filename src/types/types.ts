@@ -1,7 +1,7 @@
 export type Product = {
     id: number,
     img: string,
-    EAN: string,
+    ean: string,
     name: string,
-    trashBinId: number
+    type_of_trash: number
 }

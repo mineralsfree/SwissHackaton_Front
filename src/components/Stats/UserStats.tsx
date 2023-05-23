@@ -1,4 +1,3 @@
-export const UserStats = () => {
-
+export const UserStats = (props ) => {
     return (<div>user Stats</div>)
 }
