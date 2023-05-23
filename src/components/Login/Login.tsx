@@ -6,11 +6,13 @@ import {
     Button,
 } from '@mui/material';
 import {useAuth} from '../../contexts/AuthContext';
+import {Link, useNavigate} from "react-router-dom";
 
 const LoginPage = () => {
     const {login} = useAuth();
     // console.log(a);
     // console.log(props);
+    const navigate = useNavigate();
     // const classes = useStyles();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -22,7 +24,9 @@ const LoginPage = () => {
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     };
-
+    const handleRegister = () => {
+        navigate('/register');
+    };
     const handleLogin = async () => {
         try {
             const response = await fetch('http://localhost:8080/api/login', {
@@ -83,6 +87,12 @@ const LoginPage = () => {
             >
                 Login
             </Button>
+            <Typography variant="body1" sx={{marginTop: 2}}>
+                Don't have an account?{' '}
+                <Link to={'/register'}>
+                    Register here
+                </Link>
+            </Typography>
         </Container>
     );
 };

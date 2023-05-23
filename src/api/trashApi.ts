@@ -6,6 +6,6 @@ export const trashApi = {
         return fetch(`${BASE_URL}products/check/${ean}`, {credentials: 'include'}).then(res => res.json())
     },
     throwTrash: async (ean: string) => {
-        return fetch(`${BASE_URL}products/throw/${ean}`, {credentials: "include"}).then(res => res.json())
+        return fetch(`${BASE_URL}products/throw`, {method: 'POST', credentials: "include", body: JSON.stringify({ean})}, ).then(res => res.json())
     }
 }

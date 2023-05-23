@@ -81,7 +81,7 @@ const RegisterPage = (props) => {
                 fullWidth
                 onClick={handleRegister}
             >
-                Login
+                Register Account
             </Button>
         </Container>
     );

@@ -9,8 +9,8 @@ import RegisterPage from "./components/Login/Register";
 import {ProtectedLayout} from "./contexts/ProtectedLayout";
 import {HomeLayout} from "./contexts/HomeLayout";
 import {UserDash} from "./components/UserDash/UserDash";
-import {UserStats} from "./components/Stats/UserStats";
-
+import {PoznanStats} from "./components/Stats/PoznanStats";
+import {UserHistory} from './components/UserDash/UserHistory';
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
@@ -23,9 +23,10 @@ const router = createBrowserRouter(createRoutesFromElements(
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/register" element={<RegisterPage/>}/>
             <Route path="/dashboard" element={<ProtectedLayout/>}>
-                <Route path="stats" element={<UserStats/>}/>
+                <Route path="stats" element={<PoznanStats/>}/>
                 <Route path="trash" element={<ScanScreen/>}/>
                 <Route path="user" element={<UserDash/>}/>
+                <Route path={"userHistory"} element={<UserHistory/>}/>
             </Route>
         </Route>
     </>

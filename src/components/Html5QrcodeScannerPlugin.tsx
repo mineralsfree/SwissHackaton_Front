@@ -29,8 +29,7 @@ const createConfig = (props) => {
     config.useBarCodeDetectorIfSupported = true;
     config.rememberLastUsedCamera = true;
     config.facingMode = 'environment';
-    config.qrbox =
-        {width: 300, height: 200}
+    config.qrbox = {width: 300, height: 200}
 
     return config;
 };
@@ -49,6 +48,7 @@ interface IHtml5QrcodePlugin {
 const Html5QrcodePlugin = (props: IHtml5QrcodePlugin) => {
 
     useEffect(() => {
+        console.log('render QR')
         // when component mounts
         const config = createConfig(props);
         // const verbose = props.verbose === true;
@@ -62,11 +62,12 @@ const Html5QrcodePlugin = (props: IHtml5QrcodePlugin) => {
 
         // cleanup function when component will unmount
         return () => {
+            // html5QrcodeScanner.pause(true);
             html5QrcodeScanner.clear().catch(error => {
                 console.error("Failed to clear html5QrcodeScanner. ", error);
             });
         };
-    }, []);
+    }, [props]);
 
     return (
         <div id={qrcodeRegionId}/>

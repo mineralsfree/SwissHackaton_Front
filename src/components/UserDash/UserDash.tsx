@@ -1,6 +1,10 @@
 import {useEffect, useState} from "react";
 import {UserApi} from "../../api/userApi";
 import {Container, Typography} from "@mui/material";
+import {TrashPaper} from "./TrashPaper";
+import {Link} from "react-router-dom";
+import {massConverter} from "../../helpers/massHelper";
+export const colorStringMap = ['#0066FF', '#44AA00', '#FFCC00', '#552200', '#000000']
 
 export const UserDash = () => {
     const [profile, setProfile] = useState(null);
@@ -14,6 +18,27 @@ export const UserDash = () => {
         }
         getUserStats();
     }, [])
+    let items = {};
+    if (profile) {
+
+        // console.log(profile.trash.length);
+        // console.log(profile.trash.group);
+        profile.trash.forEach((tr) => {
+            // console.log(tr);
+            if (items[tr.type_of_trash]) {
+                items[tr.type_of_trash].emission = items[tr.type_of_trash].emission + tr.emission_prevented;
+                items[tr.type_of_trash].mass = items[tr.type_of_trash].mass + tr.mass;
+            } else {
+                items[tr.type_of_trash] = {}
+                items[tr.type_of_trash].emission = tr.emission_prevented;
+                items[tr.type_of_trash].mass = tr.mass;
+            }
+        })
+        // items = profile.trash.group((tr: Product)=>tr.type_of_trash);
+        // console.log(items);
+    }
+    const trashMap =['Szklo', 'Paper', 'Plastyk', 'Bio', 'Zmieszane'];
+
     return profile && (
         <Container maxWidth="md" sx={{
             display: 'flex',
@@ -39,26 +64,17 @@ export const UserDash = () => {
             </div>
 
             <Typography variant="h6" gutterBottom>
-                Total Saved Mass: {profile.profile.total_saved_mass}
+                Total Saved Mass: {massConverter(profile.profile.total_saved_mass)}
             </Typography>
             <Typography variant="h6" gutterBottom>
-                Total Prevented CO2: {profile.profile.total_prevented_co2}
+                Total Prevented CO2: {massConverter(profile.profile.total_prevented_co2)}
             </Typography>
-            <Typography variant="h6" gutterBottom>
-                Trash Items:
-            </Typography>
-            {profile.trash.map((item, index) => (
-                <div key={index} style={{marginBottom: 16}}>
-                    <Typography>{item.name}</Typography>
-                    <Typography>
-                        Emission Prevented: {item.emission_prevented}
-                    </Typography>
-                    <Typography>Mass: {item.mass}</Typography>
-                    <Typography>
-                        Type of Trash: {item.type_of_trash}
-                    </Typography>
-                </div>
+            <Container sx={{marginBottom: 2}}>
+            {Object.keys(items).map((key, index) => (
+                <TrashPaper type={trashMap[key]} color={colorStringMap[key]} {...items[key]}></TrashPaper>
             ))}
+            </Container>
+            <Link style={{marginBottom: '16px'}} to={'/dashboard/userHistory'}>Pokaż historję</Link>
         </Container>
     )
 

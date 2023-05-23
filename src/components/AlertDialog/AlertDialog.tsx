@@ -51,7 +51,7 @@ export default function AlertDialogSlide(props: IAlertDialogSlideProps) {
                 onClose={handleClose}
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle>{""}</DialogTitle>
+                <DialogTitle>{"Jesteś w trakcie wyrzucania smecia"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
                         Chcesz Wyrzucić {product?.name}?
@@ -66,8 +66,9 @@ export default function AlertDialogSlide(props: IAlertDialogSlideProps) {
                     }}>Dzięki za info</Button>
                     <Button onClick={async () => {
                         try {
+                            console.log(product);
                              await trashApi.throwTrash(product.ean);
-                            navigate("/dashboard/stats");
+                            navigate("/dashboard/user");
 
                         } catch (e) {
                         }
