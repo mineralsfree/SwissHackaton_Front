@@ -9,8 +9,14 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import {TransitionProps} from '@mui/material/transitions';
 import {Product} from "../../types/types";
-import TrashBin from '../../imgs/image.png';
+import blue from '../../imgs/niebieski.png';
+import green from '../../imgs/zielony.png';
+import yellow from '../../imgs/zolty.png';
+import brown from '../../imgs/brazowy.png';
+import black from '../../imgs/czarny.png'
+
 import {useNavigate} from "react-router-dom";
+import {trashApi} from "../../api/trashApi";
 
 
 const Transition = React.forwardRef(function Transition(
@@ -27,6 +33,9 @@ interface IAlertDialogSlideProps {
     open: boolean;
     handleClose: () => void;
 }
+
+const colorMap = [blue, green, yellow, brown, black];
+const colorStringMap = ['niebieskiego', 'zielonego', 'żoltego', 'brązowego']
 
 export default function AlertDialogSlide(props: IAlertDialogSlideProps) {
     const {product, open, handleClose} = props;
@@ -46,17 +55,22 @@ export default function AlertDialogSlide(props: IAlertDialogSlideProps) {
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
                         Chcesz Wyrzucić {product?.name}?
-                        Wyrzuć ją do zielonego kosza
+                        Wyrzuć ją do {colorStringMap[product.type_of_trash]} kosza
                         <img src={product.img} width={100}/>
-                        <img width={200} src={TrashBin}/>
+                        <img width={200} src={colorMap[product.type_of_trash]}/>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={() => {
                         handleClose()
                     }}>Dzięki za info</Button>
-                    <Button onClick={() => {
-                        navigate("/stats");
+                    <Button onClick={async () => {
+                        try {
+                             await trashApi.throwTrash(product.ean);
+                            navigate("/dashboard/stats");
+
+                        } catch (e) {
+                        }
                         handleClose()
                     }}>Wyrzuciłem</Button>
                 </DialogActions>

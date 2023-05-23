@@ -3,7 +3,7 @@ import {useAuth} from "./AuthContext";
 import {BottomNavBar} from "../components/BottomNavBar/BottomNavBar";
 
 export const ProtectedLayout = () => {
-    const user= useAuth();
+    const {user}= useAuth();
     console.log(user);
 
     if (!user) {

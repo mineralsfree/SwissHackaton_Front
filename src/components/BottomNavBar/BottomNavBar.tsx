@@ -25,11 +25,11 @@ export const BottomNavBar = () => {
             backgroundColor: '#fff', // Customize the background color if needed
         }}
     >
-        <BottomNavigationAction value={'/user'} component={Link} to={'/user'} label="Moje konto"
+        <BottomNavigationAction value={'dashboard/user'} component={Link} to={'/dashboard/user'} label="Moje konto"
                                 icon={<AccountCircleIcon/>}/>
-        <BottomNavigationAction value={'trash'} component={Link} to={'/trash'} label="Skanuje smiecie"
+        <BottomNavigationAction value={'dashboard/trash'} component={Link} to={'/dashboard/trash'} label="Skanuje smiecie"
                                 icon={<CropFreeIcon/>}/>
-        <BottomNavigationAction value={'/stats'} component={Link} to={'/stats'} label="Statystyki"
+        <BottomNavigationAction value={'dashboard/stats'} component={Link} to={'/dashboard/stats'} label="Statystyki"
                                 icon={<LeaderboardIcon/>}/>
     </BottomNavigation>)
 }

@@ -39,7 +39,7 @@ interface IHtml5QrcodePlugin {
     fps: number;
     qrbox?: { width: number, height: number };
     disableFlip: boolean;
-    qrCodeSuccessCallback: (str: string) => void;
+    qrCodeSuccessCallback: (str: string, html5QrcodeScanner) => void;
     verbose?: boolean;
     qrCodeErrorCallback?: (str: string) => void;
     formatsToSupport?: Array<Html5QrcodeSupportedFormats>
@@ -58,7 +58,7 @@ const Html5QrcodePlugin = (props: IHtml5QrcodePlugin) => {
         }
         const html5QrcodeScanner = new Html5QrcodeScanner(qrcodeRegionId, config, false);
 
-        html5QrcodeScanner.render(props.qrCodeSuccessCallback, props.qrCodeErrorCallback, );
+        html5QrcodeScanner.render((str)=>{props.qrCodeSuccessCallback(str, html5QrcodeScanner)}, props.qrCodeErrorCallback, );
 
         // cleanup function when component will unmount
         return () => {
