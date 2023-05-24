@@ -38,7 +38,7 @@ export const UserDash = () => {
         // items = profile.trash.group((tr: Product)=>tr.type_of_trash);
         // console.log(items);
     }
-    const trashMap = ['SZKŁO', 'PAPIER', 'PLASTIK', 'BIO', 'ZMIESZANE'];
+    const trashMap = ['PAPIER', 'SZKŁO', 'PLASTIK', 'BIO', 'ZMIESZANE'];
 
     return profile && (
         <Container maxWidth="md" sx={{
