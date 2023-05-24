@@ -30,8 +30,8 @@ export const UserHistory = (props) => {
                                sx={{display: 'flex', border: '1px solid ' + color, padding: 1}}>
                             <img src={tr.image_url} style={{paddingRight: '15px'}}  height={140}/>
                             <div>
-                                <p>Mass: {massConverter(tr.mass)}</p>
-                                <p>Emmisions Prevented: {massConverter(tr.emission_prevented)}</p>
+                                <p>Waga: {massConverter(tr.mass)}</p>
+                                <p>Zmniejszono emisję CO<sub>2</sub> o: {massConverter(tr.emission_prevented)}</p>
                             </div>
                         </Paper>
                     </Container>

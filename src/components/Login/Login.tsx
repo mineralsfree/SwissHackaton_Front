@@ -59,7 +59,7 @@ const LoginPage = () => {
             marginTop: '64px',
         }}>
             <Typography variant="h5" component="h1" sx={{marginBottom: '32px'}}>
-                Login
+                Logowanie
             </Typography>
             <TextField
                 label="Email"
@@ -85,12 +85,12 @@ const LoginPage = () => {
                 fullWidth
                 onClick={handleLogin}
             >
-                Login
+                Zaloguj się
             </Button>
             <Typography variant="body1" sx={{marginTop: 2}}>
-                Don't have an account?{' '}
+                Nie masz jeszcze konta?{' '}
                 <Link to={'/register'}>
-                    Register here
+                    Zarejestruj się tutaj
                 </Link>
             </Typography>
         </Container>

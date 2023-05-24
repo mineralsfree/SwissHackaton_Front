@@ -64,17 +64,17 @@ export const UserDash = () => {
             </div>
 
             <Typography variant="h6" gutterBottom>
-                Total Saved Mass: {massConverter(profile.profile.total_saved_mass)}
+                Całkowita waga: {massConverter(profile.profile.total_saved_mass)}
             </Typography>
             <Typography variant="h6" gutterBottom>
-                Total Prevented CO2: {massConverter(profile.profile.total_prevented_co2)}
+                Całkowita zmniejszona emisja CO<sub>2</sub>: {massConverter(profile.profile.total_prevented_co2)}
             </Typography>
             <Container sx={{marginBottom: 2}}>
             {Object.keys(items).map((key, index) => (
                 <TrashPaper type={trashMap[key]} color={colorStringMap[key]} {...items[key]}></TrashPaper>
             ))}
             </Container>
-            <Link style={{marginBottom: '16px'}} to={'/dashboard/userHistory'}>Pokaż historję</Link>
+            <Link style={{marginBottom: '16px'}} to={'/dashboard/userHistory'}>Pokaż historię</Link>
         </Container>
     )
 

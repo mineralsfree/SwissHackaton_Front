@@ -55,7 +55,7 @@ const RegisterPage = (props) => {
             marginTop: '64px',
         }}>
             <Typography variant="h5" component="h1" sx={{marginBottom: '32px'}}>
-                REGISTER
+                Rejestracja
             </Typography>
             <TextField
                 label="Email"
@@ -81,7 +81,7 @@ const RegisterPage = (props) => {
                 fullWidth
                 onClick={handleRegister}
             >
-                Register Account
+                Zarejestruj się
             </Button>
         </Container>
     );

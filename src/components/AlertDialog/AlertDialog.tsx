@@ -51,11 +51,11 @@ export default function AlertDialogSlide(props: IAlertDialogSlideProps) {
                 onClose={handleClose}
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle>{"Jesteś w trakcie wyrzucania smecia"}</DialogTitle>
+                <DialogTitle>{"Jesteś w trakcie wyrzucania śmieci"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Chcesz Wyrzucić {product?.name}?
-                        Wyrzuć ją do {colorStringMap[product.type_of_trash]} kosza
+                        Chcesz wyrzucić {product?.name}?
+                        Wyrzuć to do {colorStringMap[product.type_of_trash]} kosza
                         <img src={product.img} width={100}/>
                         <img width={200} src={colorMap[product.type_of_trash]}/>
                     </DialogContentText>

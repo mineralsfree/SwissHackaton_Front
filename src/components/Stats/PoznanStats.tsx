@@ -17,8 +17,8 @@ export const PoznanStats = () => {
     return (
 
         <div style={{padding: '16px', display: 'flex',flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
-            <p>W calym miaście zrecyclingowano 220kg odpady, tyle waży twoja stara</p>
-            <p>To pozwolilo na zmniejszenie CO2 footprint o 69 kg</p>
+            <p>W całym mieście poddano recyklingowi 220kg odpadów</p>
+            <p>To pozwoliło na zmniejszenie śladu węglowego aż o <b>69 kg!</b></p>
             <img src={Mapa} width={'100%'} style={{opacity: 0.2, display: 'absolute', top: '50%', bottom: '50%'}}/>
         </div>)
 }

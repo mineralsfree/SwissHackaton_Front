@@ -14,8 +14,8 @@ export const TrashPaper = (props: ITrashPaper) => {
     return <Paper elevation={8} sx={{background: color, padding: 4}}>
         <div><b>{type}</b></div>
         {title}
-        Emissions Prevented: {massConverter(mass)}
+        Zmniejszono emisję CO<sub>2</sub> o: {massConverter(mass)}
     <br/>
-        Material recycled: {massConverter(emission)}
+        Poddano recyklingowi: {massConverter(emission)}
     </Paper>
 }
