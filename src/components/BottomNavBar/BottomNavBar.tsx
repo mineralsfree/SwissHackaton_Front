@@ -27,9 +27,9 @@ export const BottomNavBar = () => {
     >
         <BottomNavigationAction value={'dashboard/user'} component={Link} to={'/dashboard/user'} label="Moje konto"
                                 icon={<AccountCircleIcon/>}/>
-        <BottomNavigationAction value={'dashboard/trash'} component={Link} to={'/dashboard/trash'} label="Skanuje smiecie"
+        <BottomNavigationAction value={'dashboard/trash'} component={Link} to={'/dashboard/trash'} label="Skanuj śmieci"
                                 icon={<CropFreeIcon/>}/>
-        <BottomNavigationAction value={'dashboard/stats'} component={Link} to={'/dashboard/stats'} label="Statystyki"
+        <BottomNavigationAction value={'dashboard/stats'} component={Link} to={'/dashboard/stats'} label="Statystyki miejskie"
                                 icon={<LeaderboardIcon/>}/>
     </BottomNavigation>)
 }
