@@ -4,6 +4,7 @@ import {Container, Typography} from "@mui/material";
 import {TrashPaper} from "./TrashPaper";
 import {Link} from "react-router-dom";
 import {massConverter} from "../../helpers/massHelper";
+
 export const colorStringMap = ['#0066FF', '#44AA00', '#FFCC00', '#552200', '#000000']
 
 export const UserDash = () => {
@@ -37,7 +38,7 @@ export const UserDash = () => {
         // items = profile.trash.group((tr: Product)=>tr.type_of_trash);
         // console.log(items);
     }
-    const trashMap =['Szklo', 'Paper', 'Plastyk', 'Bio', 'Zmieszane'];
+    const trashMap = ['Szklo', 'Paper', 'Plastyk', 'Bio', 'Zmieszane'];
 
     return profile && (
         <Container maxWidth="md" sx={{
@@ -46,7 +47,7 @@ export const UserDash = () => {
             alignItems: 'center',
             marginTop: 4,
         }}>
-            <div>
+            <div style={{display: "flex", flexDirection: "column"}}>
 
                 <img
                     src={profile.profile.image_url}
@@ -55,6 +56,7 @@ export const UserDash = () => {
                         width: '200px',
                         height: '200px',
                         borderRadius: '50%',
+                        margin: 'auto',
                         marginBottom: 16
                     }}
                 />
@@ -63,16 +65,17 @@ export const UserDash = () => {
                 </Typography>
             </div>
 
-            <Typography variant="h6" gutterBottom>
+            {profile.profile.total_saved_mass && <Typography variant="h6" gutterBottom>
                 Całkowita waga: {massConverter(profile.profile.total_saved_mass)}
-            </Typography>
-            <Typography variant="h6" gutterBottom>
-                Całkowita zmniejszona emisja CO<sub>2</sub>: {massConverter(profile.profile.total_prevented_co2)}
-            </Typography>
+            </Typography>}
+
+            {profile.profile.total_prevented_co2 && <Typography variant="h6" gutterBottom>
+                Całkowita zmniejszona emisja CO<sub>2</sub>:  {massConverter(profile.profile.total_prevented_co2)}
+            </Typography>}
             <Container sx={{marginBottom: 2}}>
-            {Object.keys(items).map((key, index) => (
-                <TrashPaper type={trashMap[key]} color={colorStringMap[key]} {...items[key]}></TrashPaper>
-            ))}
+                {Object.keys(items).map((key, index) => (
+                    <TrashPaper type={trashMap[key]} color={colorStringMap[key]} {...items[key]}></TrashPaper>
+                ))}
             </Container>
             <Link style={{marginBottom: '16px'}} to={'/dashboard/userHistory'}>Pokaż historię</Link>
         </Container>

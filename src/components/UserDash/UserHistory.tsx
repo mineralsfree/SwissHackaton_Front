@@ -21,6 +21,7 @@ export const UserHistory = (props) => {
     }, [])
     return trash && (<div>
             <BackButton/>
+            {trash.length === 0 && (<p>Nie wyrzuciłeś jeszcze żadnego smiecia</p>)}
             {trash.map((tr: BackendProduct) => {
             const color = colorStringMap[tr.type_of_trash];
             console.log(color);
