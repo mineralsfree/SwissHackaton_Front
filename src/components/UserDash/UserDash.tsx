@@ -47,7 +47,7 @@ export const UserDash = () => {
             alignItems: 'center',
             marginTop: 4,
         }}>
-            <div style={{display: "flex", flexDirection: "column"}}>
+            <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
 
                 <img
                     src={profile.profile.image_url}
@@ -61,7 +61,7 @@ export const UserDash = () => {
                     }}
                 />
                 <Typography variant="h6" gutterBottom>
-                    username: {profile.profile.display_name}
+                    Witaj {profile.profile.display_name}
                 </Typography>
             </div>
 
